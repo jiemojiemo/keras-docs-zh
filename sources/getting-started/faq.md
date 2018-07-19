@@ -19,10 +19,12 @@
 - [如何在 Keras 中使用 HDF5 输入？](#how-can-i-use-hdf5-inputs-with-keras)
 - [Keras 配置文件保存在哪里？](#where-is-the-keras-configuration-file-stored)
 - [如何在 Keras 开发过程中获取可复现的结果？](#how-can-i-obtain-reproducible-results-using-keras-during-development)
+- [如何在 Keras 中安装 HDF5 或 h5py 来保存我的模型？](#how-can-i-obtain-reproducible-results-using-keras-during-development)
 
 ---
 
-### 如何引用 Keras?
+<span id="how-should-i-cite-keras"></span>
+### 如何引用 Keras? 
 
 如果 Keras 有助于您的研究，请在你的出版物中引用它。以下是 BibTeX 条目引用的示例：
 
@@ -590,3 +592,20 @@ K.set_session(sess)
 
 # 剩余代码 ...
 ```
+
+### 如何在 Keras 中安装 HDF5 或 h5py 来保存我的模型？
+
+为了将你的 Keras 模型保存为 HDF5 文件，例如通过 `keras.callbacks.ModelCheckpoint`，Keras 使用了 h5py Python 包。h5py 是 Keras 的依赖项，应默认被安装。在基于 Debian 的发行版本上，你需要再额外安装 `libhdf5`：
+
+```
+sudo apt-get install libhdf5-serial-dev
+```
+
+如果你不确定是否安装了 h5py，则可以打开 Python shell 并通过下面的命令加载模块
+
+```
+import h5py
+```
+
+如果模块导入没有错误，那么模块已经安装成功，否则你可以在 http://docs.h5py.org/en/latest/build.html 中找到详细的安装说明
+
